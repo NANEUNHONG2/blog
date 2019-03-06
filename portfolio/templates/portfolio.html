@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">나리's Portfolio</h1>
+      <p class="lead text-muted">#나리 #일상 #데일리 #멍스타그램 #말티즈 #졸귀탱</p>
+      <!-- <p>
+        <a href="#" class="btn btn-primary my-2">Main call to action</a>
+        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+      </p> -->
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+        <div class="container">   
+            <div class="row">
+                <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top" src="{% static '나리.jpg' %}" height = 300 alt = "나리사진">
+                    <div class="card-body">
+                    <p class="card-text">매일 나리의 일상이 업댓되다!</p>
+                    <!-- <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                    </div> -->
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
+  <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+            {% for portfolio in portfolios.all %}
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <img class="card-img-top" src="{{ portfolio.image.url }}" height=300>
+                  <div class="card-body">
+                    <h4>{{ portfolio.title }}</h4>
+                    <p class="card-text">{{ portfolio.description }}</p>
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+
+</main>
+
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
+</html>
+
+{% endblock %}
