@@ -19,20 +19,26 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'new' %}">글쓰기</a>
         </li>
+        {% if user.is_authenticated %}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'portfolio' %}">Portfolio</a>
-            <!-- <a class="dropdown-item" href="#">Another action</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a> -->
+            <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+            <form id="logout" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %} <input type="hidden" />
+            </form>
             </div>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
+        {% else %}
+        <li class="nav-item">
+            <a class="dropdown-item" href="{% url 'signup' %}" tabindex="-1" aria-disabled="true">회원가입</a>
+            <a class="dropdown-item" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">로그인</a>
+        </li>
+        {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -42,7 +48,7 @@
     </nav>
 
 <div class="container">
-{% block content %} #contents가 올 예정임을 선언
+{% block content %} <!-- contents가 올 예정임을 선언 -->
 {% endblock %}
 </div>
 </body>
